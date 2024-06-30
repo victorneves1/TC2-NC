@@ -54,8 +54,7 @@ def es_core(objective, bounds, n_iter, step_size, mu, lam):
         for i in selected:
             # check if this parent is the best solution ever seen
             if scores[i] < best_eval:
-                best, best_eval = population[i], scores[i]
-                history.append(best_eval)
+                best, best_eval = population[i], scores[i]                
                 print('Epoch %04d, Best: f(%s) = %.5f' % (epoch, best, best_eval), end="\r")
             # create children for parent
             for _ in range(n_children):
@@ -65,6 +64,7 @@ def es_core(objective, bounds, n_iter, step_size, mu, lam):
                 children.append(child)
         # replace population with children
         population = children
+        history.append(best_eval)
     return best, best_eval, history
 
 
